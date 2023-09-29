@@ -14,6 +14,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
+//ALL BUTTONS AND TEXT FIELDS ARE SET AS SEPARATE WIDGETS OUTSIDE MAIN WIDGET - Noel Shaji
+
   Widget buildEmail() {
     
     return Column(
