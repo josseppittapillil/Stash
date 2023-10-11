@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stash/construct.dart';
 import 'package:stash/loginpage.dart';
+
 
 
 //hi josse
@@ -15,12 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home: const Construct(),
     );
   }
 }
