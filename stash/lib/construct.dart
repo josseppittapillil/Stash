@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:multi_dropdown/multiselect_dropdown.dart';
 
-
-const List<String> list = <String>['Jan', 'Feb', 'Mar', 'Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const List<String> list = <String>[
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+];
 
 class Construct extends StatefulWidget {
   const Construct({super.key});
@@ -19,21 +32,20 @@ class _ConstructState extends State<Construct> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Constructions",
           style: TextStyle(),
         ),
-        centerTitle: true,
+        centerTitle: false,
         actions: [
           IconButton(
               onPressed: () {
                 //Logout function
               },
-              icon: Icon(Icons.business_sharp))
+              icon: const Icon(Icons.business_sharp))
         ],
       ),
-      body: Container(
-          child: Column(
+      body: Column(
         children: [
           SizedBox(
             height: screenHeight * 0.05,
@@ -43,7 +55,7 @@ class _ConstructState extends State<Construct> {
 
           Center(
             child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               width: screenWidth * 0.90,
               height: screenHeight * 0.20,
               decoration: BoxDecoration(
@@ -51,7 +63,7 @@ class _ConstructState extends State<Construct> {
                   borderRadius: BorderRadius.circular(30)),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
@@ -87,20 +99,20 @@ class _ConstructState extends State<Construct> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
                     width: screenWidth * 90,
                     height: 1,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Color(0xff000000),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Column(
@@ -132,34 +144,39 @@ class _ConstructState extends State<Construct> {
               ),
             ),
           ),
+          const SizedBox(width: 100, height: 20),
+          const SizedBox(
+            width: 100,
+            child: Text("Select Month",
+                style: TextStyle(fontStyle: FontStyle.italic)),
+          ),
 
           //MONTH DROPDOWN
-
-          DropdownButton<String>(
-            value: dropdownValue,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            menuMaxHeight: screenHeight * 0.20,
-            style: const TextStyle(color: Colors.deepPurple),
-            underline: Container(
-              height: 2,
-              color: Colors.deepPurpleAccent,
-            ),
-            onChanged: (String? value) {
-              // This is called when the user selects an item.
-              setState(() {
-                dropdownValue = value!;
-              });
-            },
-            items: list.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
+          MultiSelectDropDown(
+            onOptionSelected: (List<ValueItem> selectedOptions) {},
+            options: const <ValueItem>[
+              ValueItem(label: 'JANUARY', value: '1'),
+              ValueItem(label: 'FEBRUARY', value: '2'),
+              ValueItem(label: 'MARCH', value: '3'),
+              ValueItem(label: 'APRIL', value: '4'),
+              ValueItem(label: 'MAY', value: '5'),
+              ValueItem(label: 'JUNE', value: '6'),
+              ValueItem(label: 'JULY', value: '6'),
+              ValueItem(label: 'AUGUST', value: '6'),
+              ValueItem(label: 'SEPTEMBER', value: '6'),
+              ValueItem(label: 'OCTOBER', value: '6'),
+              ValueItem(label: 'NOVEMBER', value: '6'),
+              ValueItem(label: 'DECEMBER', value: '6'),
+            ],
+            selectionType: SelectionType.single,
+            chipConfig: const ChipConfig(wrapType: WrapType.wrap),
+            dropdownHeight: 300,
+            optionTextStyle:
+                const TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+            selectedOptionIcon: const Icon(Icons.check_circle),
           ),
         ],
-      )),
+      ),
     );
   }
 }
